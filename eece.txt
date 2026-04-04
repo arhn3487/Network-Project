@@ -1,0 +1,89 @@
+Switch(config)#vlan 10
+Switch(config-vlan)#name eece20
+Switch(config-vlan)#ex
+Switch(config)#vlan 20
+Switch(config-vlan)#name eece21
+Switch(config-vlan)#ex
+Switch(config)#vlan 30
+Switch(config-vlan)#name eeceoffice
+Switch(config-vlan)#ex
+Switch(config)#int fa0/5
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 10
+Switch(config-if)#ex
+Switch(config)#int fa0/6
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 10
+Switch(config-if)#ex
+Switch(config)#int fa0/7
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 10
+Switch(config-if)#ex
+Switch(config)#int fa0/2
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 20
+Switch(config)#int fa0/3
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 20
+Switch(config-if)#ex
+Switch(config)#int fa0/4
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 20
+Switch(config-if)#ex
+Switch(config)#int fa0/8
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 30
+Switch(config-if)#ex
+Switch(config)#int fa0/9
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 30
+Switch(config-if)#ex
+Switch(config)#int fa0/1
+Switch(config-if)#switchport mode trunk
+Switch(config-if)#ex
+
+Router(config)#int gig0/2
+Router(config-if)#no shutdown
+Router(config-if)#ex
+
+Router(config)#int gig0/2.10
+Router(config-subif)#encapsulation dot1Q 10
+Router(config-subif)#ip address 192.168.40.1 255.255.255.0
+Router(config-subif)#ex
+Router(config)#int gig0/2.20
+Router(config-subif)#encapsulation dot1Q 20
+Router(config-subif)#ip address 192.168.41.1 255.255.255.0
+Router(config-subif)#ex
+Router(config)#int gig0/2.30
+Router(config-subif)#encapsulation dot1Q 30
+Router(config-subif)#ip address 192.168.42.1 255.255.255.0
+Router(config-subif)#end
+Router#en
+Router#conf t
+
+Router(config)#service dhcp
+Router(config)#ip dhcp excluded-address 192.168.40.1 192.168.40.5
+Router(config)#ip dhcp excluded-address 192.168.41.1 192.168.41.5
+Router(config)#ip dhcp excluded-address 192.168.42.1 192.168.42.5	
+Router(config)#ip dhcp pool vlan10
+Router(dhcp-config)#network 192.168.40.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.40.1
+Router(dhcp-config)#ex
+Router(config)#ip dhcp pool vlan20
+Router(dhcp-config)#network 192.168.41.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.41.1
+Router(dhcp-config)#ex
+Router(config)#ip dhcp pool vlan30
+Router(dhcp-config)#network 192.168.42.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.42.1
+Router(dhcp-config)#ex
+Router(config)#int gig0/2.10
+Router(config-subif)#ip helper-address 192.168.40.1
+Router(config-subif)#ex
+Router(config)#int gig0/2.20
+Router(config-subif)#ip helper-address 192.168.41.1
+Router(config-subif)#ex
+Router(config)#int gig0/2.30
+Router(config-subif)#ip helper-address 192.168.42.1
+Router(config-subif)#ex
+Router(config)#end
