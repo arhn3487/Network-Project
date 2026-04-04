@@ -42,48 +42,47 @@ Switch(config)#int fa0/1
 Switch(config-if)#switchport mode trunk
 Switch(config-if)#ex
 
-Router(config)#int gig0/2
-Router(config-if)#no shutdown
-Router(config-if)#ex
+int gig0/2
+no shutdown
+ex
 
-Router(config)#int gig0/2.10
-Router(config-subif)#encapsulation dot1Q 10
-Router(config-subif)#ip address 192.168.40.1 255.255.255.0
-Router(config-subif)#ex
-Router(config)#int gig0/2.20
-Router(config-subif)#encapsulation dot1Q 20
-Router(config-subif)#ip address 192.168.41.1 255.255.255.0
-Router(config-subif)#ex
-Router(config)#int gig0/2.30
-Router(config-subif)#encapsulation dot1Q 30
-Router(config-subif)#ip address 192.168.42.1 255.255.255.0
-Router(config-subif)#end
+int gig0/2.10
+encapsulation dot1Q 10
+ip address 192.168.40.1 255.255.255.0
+ex
+int gig0/2.20
+encapsulation dot1Q 20
+ip address 192.168.41.1 255.255.255.0
+ex
+int gig0/2.30
+encapsulation dot1Q 30
+ip address 192.168.42.1 255.255.255.0
+end
 Router#en
 Router#conf t
 
-Router(config)#service dhcp
-Router(config)#ip dhcp excluded-address 192.168.40.1 192.168.40.5
-Router(config)#ip dhcp excluded-address 192.168.41.1 192.168.41.5
-Router(config)#ip dhcp excluded-address 192.168.42.1 192.168.42.5	
-Router(config)#ip dhcp pool vlan10
-Router(dhcp-config)#network 192.168.40.0 255.255.255.0
-Router(dhcp-config)#default-router 192.168.40.1
-Router(dhcp-config)#ex
-Router(config)#ip dhcp pool vlan20
-Router(dhcp-config)#network 192.168.41.0 255.255.255.0
-Router(dhcp-config)#default-router 192.168.41.1
-Router(dhcp-config)#ex
-Router(config)#ip dhcp pool vlan30
-Router(dhcp-config)#network 192.168.42.0 255.255.255.0
-Router(dhcp-config)#default-router 192.168.42.1
-Router(dhcp-config)#ex
-Router(config)#int gig0/2.10
-Router(config-subif)#ip helper-address 192.168.40.1
-Router(config-subif)#ex
-Router(config)#int gig0/2.20
-Router(config-subif)#ip helper-address 192.168.41.1
-Router(config-subif)#ex
-Router(config)#int gig0/2.30
-Router(config-subif)#ip helper-address 192.168.42.1
-Router(config-subif)#ex
-Router(config)#end
+service dhcp
+ip dhcp excluded-address 192.168.40.1 192.168.40.5
+ip dhcp excluded-address 192.168.41.1 192.168.41.5
+ip dhcp excluded-address 192.168.42.1 192.168.42.5	
+ip dhcp pool vlan10
+network 192.168.40.0 255.255.255.0
+default-router 192.168.40.1
+ex
+ip dhcp pool vlan20
+network 192.168.41.0 255.255.255.0
+default-router 192.168.41.1
+ex
+ip dhcp pool vlan30
+network 192.168.42.0 255.255.255.0
+default-router 192.168.42.1
+ex
+int gig0/2.10
+ip helper-address 192.168.40.1
+ex
+int gig0/2.20
+ip helper-address 192.168.41.1
+ex
+int gig0/2.30
+ip helper-address 192.168.42.1
+end
