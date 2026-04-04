@@ -1,0 +1,15 @@
+DSW
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 192.168.50.0
+Router(config-router)#network 10.1.1.8
+Router(config-router)#no auto summary
+Router(config-router)#ex
+
+BUP
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 192.168.70.0
+Router(config-router)#network 10.10.1.28
+Router(config-router)#no auto summary
+Router(config-router)#ex

@@ -1,0 +1,19 @@
+CSE
+Router(config)#router eigrp 10
+Router(config-router)#eigrp router-id 1.1.1.1
+Router(config-router)#network 192.168.10.0 0.0.0.255
+Router(config-router)#network 192.168.11.0 0.0.0.255
+Router(config-router)#network 192.168.12.0 0.0.0.255
+Router(config-router)#network 10.10.1.0 0.0.0.3
+Router(config-router)#no auto summary
+Router(config-router)#ex
+
+EECE
+Router(config)#router eigrp 10
+Router(config-router)#eigrp router-id 2.2.2.2
+Router(config-router)#network 192.168.40.0 0.0.0.255
+Router(config-router)#network 192.168.41.0 0.0.0.255
+Router(config-router)#network 192.168.42.0 0.0.0.255
+Router(config-router)#network 10.10.1.20 0.0.0.3
+Router(config-router)#no auto summary
+Router(config-router)#ex

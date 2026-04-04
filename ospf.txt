@@ -1,0 +1,17 @@
+ME
+Router(config)#router ospf 1
+Router(config-router)#router-id 3.3.3.3
+Router(config-router)#network 10.10.1.16 0.0.0.3 area 0
+Router(config-router)#network 192.168.30.0 0.0.0.255 area 1
+Router(config-router)#network 192.168.31.0 0.0.0.255 area 2
+Router(config-router)#network 192.168.32.0 0.0.0.255 area 3
+Router(config-router)#ex
+
+CE
+Router(config)#router ospf 1
+Router(config-router)#router-id 4.4.4.4
+Router(config-router)#network 10.10.1.12 0.0.0.3 area 0
+Router(config-router)#network 192.168.20.0 0.0.0.255 area 1
+Router(config-router)#network 192.168.21.0 0.0.0.255 area 2
+Router(config-router)#network 192.168.22.0 0.0.0.255 area 3
+Router(config-router)#ex
