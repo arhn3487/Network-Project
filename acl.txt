@@ -5,16 +5,31 @@
 ! =========================
 ! R0 (CSE: 10, 11, 12)
 ! =========================
+interface g0/2.10
+ no ip access-group R0 in
+ no ip access-group R0 out
+exit
+interface g0/2.20
+ no ip access-group R0 in
+ no ip access-group R0 out
+exit
+interface g0/2.30
+ no ip access-group R0 in
+ no ip access-group R0 out
+exit
 no ip access-list extended R0
 ip access-list extended R0
  permit udp any eq bootpc any eq bootps
  permit ip 192.168.10.0 0.0.0.255 192.168.11.0 0.0.0.255
  permit ip 192.168.10.0 0.0.0.255 192.168.40.0 0.0.0.255
  permit ip 192.168.10.0 0.0.0.255 host 192.168.12.6
+ permit ip 192.168.10.0 0.0.0.255 host 192.168.100.2
  permit ip 192.168.11.0 0.0.0.255 192.168.10.0 0.0.0.255
  permit ip 192.168.11.0 0.0.0.255 192.168.41.0 0.0.0.255
  permit ip 192.168.11.0 0.0.0.255 host 192.168.12.6
+ permit ip 192.168.11.0 0.0.0.255 host 192.168.100.2
  permit ip 192.168.12.0 0.0.0.255 host 192.168.50.6
+ permit ip 192.168.12.0 0.0.0.255 host 192.168.100.2
  permit ip host 192.168.12.6 192.168.10.0 0.0.0.255
  permit ip host 192.168.12.6 192.168.11.0 0.0.0.255
  permit ip host 192.168.12.6 host 192.168.12.7
@@ -35,16 +50,31 @@ exit
 ! =========================
 ! R1 (EECE: 40, 41, 42)
 ! =========================
+interface g0/2.10
+ no ip access-group R1 in
+ no ip access-group R1 out
+exit
+interface g0/2.20
+ no ip access-group R1 in
+ no ip access-group R1 out
+exit
+interface g0/2.30
+ no ip access-group R1 in
+ no ip access-group R1 out
+exit
 no ip access-list extended R1
 ip access-list extended R1
  permit udp any eq bootpc any eq bootps
  permit ip 192.168.40.0 0.0.0.255 192.168.41.0 0.0.0.255
  permit ip 192.168.40.0 0.0.0.255 192.168.10.0 0.0.0.255
  permit ip 192.168.40.0 0.0.0.255 host 192.168.42.7
+ permit ip 192.168.40.0 0.0.0.255 host 192.168.100.2
  permit ip 192.168.41.0 0.0.0.255 192.168.40.0 0.0.0.255
  permit ip 192.168.41.0 0.0.0.255 192.168.11.0 0.0.0.255
  permit ip 192.168.41.0 0.0.0.255 host 192.168.42.7
+ permit ip 192.168.41.0 0.0.0.255 host 192.168.100.2
  permit ip 192.168.42.0 0.0.0.255 host 192.168.50.6
+ permit ip 192.168.42.0 0.0.0.255 host 192.168.100.2
  permit ip host 192.168.42.7 192.168.40.0 0.0.0.255
  permit ip host 192.168.42.7 192.168.41.0 0.0.0.255
  permit ip host 192.168.42.7 host 192.168.42.6
@@ -65,16 +95,31 @@ exit
 ! =========================
 ! R4 (CE: 20, 21, 22)
 ! =========================
+interface g0/0.40
+ no ip access-group R4 in
+ no ip access-group R4 out
+exit
+interface g0/0.50
+ no ip access-group R4 in
+ no ip access-group R4 out
+exit
+interface g0/0.60
+ no ip access-group R4 in
+ no ip access-group R4 out
+exit
 no ip access-list extended R4
 ip access-list extended R4
  permit udp any eq bootpc any eq bootps
  permit ip 192.168.20.0 0.0.0.255 192.168.21.0 0.0.0.255
  permit ip 192.168.20.0 0.0.0.255 192.168.30.0 0.0.0.255
  permit ip 192.168.20.0 0.0.0.255 host 192.168.22.6
+ permit ip 192.168.20.0 0.0.0.255 host 192.168.100.2
  permit ip 192.168.21.0 0.0.0.255 192.168.20.0 0.0.0.255
  permit ip 192.168.21.0 0.0.0.255 192.168.31.0 0.0.0.255
  permit ip 192.168.21.0 0.0.0.255 host 192.168.22.6
+ permit ip 192.168.21.0 0.0.0.255 host 192.168.100.2
  permit ip 192.168.22.0 0.0.0.255 host 192.168.50.6
+ permit ip 192.168.22.0 0.0.0.255 host 192.168.100.2
  permit ip host 192.168.22.6 192.168.20.0 0.0.0.255
  permit ip host 192.168.22.6 192.168.21.0 0.0.0.255
  permit ip host 192.168.22.6 host 192.168.22.7
@@ -95,16 +140,31 @@ exit
 ! =========================
 ! R2 (ME: 30, 31, 32)
 ! =========================
+interface g0/2.40
+ no ip access-group R2 in
+ no ip access-group R2 out
+exit
+interface g0/2.50
+ no ip access-group R2 in
+ no ip access-group R2 out
+exit
+interface g0/2.60
+ no ip access-group R2 in
+ no ip access-group R2 out
+exit
 no ip access-list extended R2
 ip access-list extended R2
  permit udp any eq bootpc any eq bootps
  permit ip 192.168.30.0 0.0.0.255 192.168.31.0 0.0.0.255
  permit ip 192.168.30.0 0.0.0.255 192.168.20.0 0.0.0.255
  permit ip 192.168.30.0 0.0.0.255 host 192.168.32.7
+ permit ip 192.168.30.0 0.0.0.255 host 192.168.100.2
  permit ip 192.168.31.0 0.0.0.255 192.168.30.0 0.0.0.255
  permit ip 192.168.31.0 0.0.0.255 192.168.21.0 0.0.0.255
  permit ip 192.168.31.0 0.0.0.255 host 192.168.32.7
+ permit ip 192.168.31.0 0.0.0.255 host 192.168.100.2
  permit ip 192.168.32.0 0.0.0.255 host 192.168.50.6
+ permit ip 192.168.32.0 0.0.0.255 host 192.168.100.2
  permit ip host 192.168.32.7 192.168.30.0 0.0.0.255
  permit ip host 192.168.32.7 192.168.31.0 0.0.0.255
  permit ip host 192.168.32.7 host 192.168.32.6
@@ -125,6 +185,10 @@ exit
 ! =========================
 ! R3 (DSW: 50)
 ! =========================
+interface g0/0
+ no ip access-group R3 in
+ no ip access-group R3 out
+exit
 no ip access-list extended R3
 ip access-list extended R3
  permit udp any eq bootpc any eq bootps
@@ -132,30 +196,42 @@ ip access-list extended R3
  permit ip host 192.168.50.6 192.168.42.0 0.0.0.255
  permit ip host 192.168.50.6 192.168.22.0 0.0.0.255
  permit ip host 192.168.50.6 192.168.32.0 0.0.0.255
+ permit ip host 192.168.50.6 host 192.168.100.2
  permit ip host 192.168.50.6 host 192.168.70.6
  permit ip host 192.168.50.6 host 192.168.50.7
  permit ip host 192.168.50.7 host 192.168.12.7
  permit ip host 192.168.50.7 host 192.168.42.6
  permit ip host 192.168.50.7 host 192.168.22.7
  permit ip host 192.168.50.7 host 192.168.32.6
+ permit ip host 192.168.50.7 host 192.168.100.2
  permit ip host 192.168.50.7 host 192.168.50.6
  deny ip any any
 exit
 ! Apply R3 inbound on the interface/subinterface with 192.168.50.1/24
 interface g0/0
 ip access-group R3 in
+exit
 
 ! =========================
-! R7 (BUP: 70)
+! R6 (CENTRAL INTER-INSTITUTION CONTROL)
 ! =========================
-no ip access-list extended R7
-ip access-list extended R7
- permit udp any eq bootpc any eq bootps
+! R6 controls these flows so R7 does not need changes:
+! (1) Block 192.168.70.0/24 from server 192.168.100.2
+! (2) Allow traffic between 192.168.70.6 and 192.168.50.6
+no ip access-list extended R6
+ip access-list extended R6
+ deny ip 192.168.70.0 0.0.0.255 host 192.168.100.2
  permit ip host 192.168.70.6 host 192.168.50.6
- permit ip host 192.168.70.6 host 192.168.70.7
- permit ip host 192.168.70.7 host 192.168.70.6
- deny ip any any
+ permit ip host 192.168.50.6 host 192.168.70.6
+ permit ip host 192.168.100.2 any
+ permit ip any host 192.168.100.2
+ permit ip any any
 exit
-! Apply R7 inbound on the interface/subinterface with 192.168.70.1/24
-interface g0/0
-ip access-group R7 in
+
+! Example on R6 (replace with actual interface connected to R7)
+interface se0/3/0
+no ip access-group R6 in
+no ip access-group R6 out
+ip access-group R6 in
+ip access-group R6 out
+exit

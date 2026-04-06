@@ -1,51 +1,54 @@
-Router>EN
-Router#conf t
-Router(config)#router rip
-Router(config-router)#version 2
-Router(config-router)#network 10.10.1.8
-Router(config-router)#network 10.10.1.28
-Router(config-router)#no auto summary
-Router(config-router)#ex
-Router(config)#router eigrp 10
-Router(config-router)#network 192.168.10.0 0.0.0.255
-Router(config-router)#network 192.168.11.0 0.0.0.255
-Router(config-router)#network 192.168.12.0 0.0.0.255
-Router(config-router)#network 10.10.1.0 0.0.0.3
-Router(config-router)#no auto summary
-Router(config-router)#ex
-Router(config)#router eigrp 10
-Router(config-router)#network 192.168.40.0 0.0.0.255
-Router(config-router)#network 192.168.41.0 0.0.0.255
-Router(config-router)#network 192.168.42.0 0.0.0.255
-Router(config-router)#network 10.10.1.20 0.0.0.3
-Router(config-router)#no auto summary
-Router(config-router)#ex
+en
+conf t
+router rip
+version 2
+network 10.10.1.8
+network 10.10.1.28
+network 192.168.100.0
+no auto summary
+ex
 
-Router(config)#router ospf 1
-Router(config-router)#network 10.10.1.16 0.0.0.3 area 0
-Router(config-router)#network 10.10.1.12 0.0.0.3 area 0
-Router(config-router)#ex
+router eigrp 10
+network 192.168.10.0 0.0.0.255
+network 192.168.11.0 0.0.0.255
+network 192.168.12.0 0.0.0.255
+network 10.10.1.0 0.0.0.3
+no auto summary
+ex
 
-OSPF - EIGRP
-Router(config)#router ospf 1
-Router(config-router)#redistribute eigrp 10 subnets
-Router(config-router)#ex
-Router(config)#router eigrp 10
-Router(config-router)#redistribute rip metric 10000 100 255 1 1500
-Router(config-router)#ex
+router eigrp 10
+network 192.168.40.0 0.0.0.255
+network 192.168.41.0 0.0.0.255
+network 192.168.42.0 0.0.0.255
+network 10.10.1.20 0.0.0.3
+no auto summary
+ex
 
-OSPF - RIP
-Router(config)#router ospf 1
-Router(config-router)#redistribute rip subnets
-Router(config-router)#ex
-Router(config)#router rip
-Router(config-router)#redistribute ospf 1 metric 2
-Router(config-router)#ex
+router ospf 1
+network 10.10.1.16 0.0.0.3 area 0
+network 10.10.1.12 0.0.0.3 area 0
+ex
 
-EIGRP - RIP
-Router(config)#router rip
-Router(config-router)#redistribute eigrp 10 metric 2
-Router(config-router)#ex
-Router(config)#router eigrp 10
-Router(config-router)#redistribute rip metric 10000 100 255 1 1500
-Router(config-router)#ex
+!OSPF - EIGRP
+router ospf 1
+redistribute eigrp 10 subnets
+ex
+router eigrp 10
+redistribute rip metric 10000 100 255 1 1500
+ex
+
+!OSPF - RIP
+router ospf 1
+redistribute rip subnets
+ex
+router rip
+redistribute ospf 1 metric 2
+ex
+
+!EIGRP - RIP
+router rip
+redistribute eigrp 10 metric 2
+ex
+router eigrp 10
+redistribute rip metric 10000 100 255 1 1500
+ex
